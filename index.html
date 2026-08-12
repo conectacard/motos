@@ -57,7 +57,7 @@
                         <span class="num">03</span> ASISTENTE RAPIDO Y DUDAS
                     </button>
                     <button class="mag-btn" onclick="showAppContent('cat4')">
-                        <span class="num">04</span> WHATSAPP Y CONTACTO
+                        <span class="num">04</span> WHATSAPP Y REDES SOCIALES  
                     </button>
                 </div>
             </div>
@@ -79,8 +79,57 @@
 
             <div class="mosaic-item lead-block">
                 <button type="button" onclick="abrirCuestionario()" class="btn-shiny-gold shine-effect">
-                    <i class="fas fa-motorcycle" style="margin-right: 8px;"></i> ¡ELIGE A TU ASESOR ESPECIALIZADO / MAPS!
+                    <i class="fas fa-car-side" style="margin-right: 8px;"></i> ¡ELIGE A TU ASESOR ESPECIALIZADO / MAPS!
                 </button>
+            </div>
+
+            <!-- NUEVO BOTÓN INDEPENDIENTE: VALORA LA ATENCIÓN -->
+            <div class="mosaic-item lead-block" style="margin-top: 8px;">
+                <button type="button" onclick="abrirMenuReseñas()" class="btn-shiny-gold shine-effect" style="background: linear-gradient(135deg, #f80101 0%, #b30000 100%); color: #fff;">
+                    <i class="fas fa-star" style="margin-right: 8px;"></i> ⭐ VALORA LA ATENCIÓN DE TU ASESOR
+                </button>
+            </div>
+
+            <!-- MENÚ DE CONTACTO - SE GENERA DINÁMICAMENTE POR SCRIPT -->
+            <div id="miMenuContacto" class="menu-oculto" onclick="cerrarMenu()">
+                <div class="menu-contenido" onclick="event.stopPropagation()">
+                    <div class="bloque-mapa-guia" style="text-align: center; padding: 5px 0 15px 0; width: 100%;">
+                        <h3 style="font-size: 0.95rem; font-weight: bold; color: #fff; text-transform: uppercase; margin-bottom: 4px; font-family: 'Montserrat', sans-serif;">Contacta a tu Asesor Digital</h3>
+                        <p style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; font-family: 'Montserrat', sans-serif; padding: 0 10px;">Elige al asesor de tu preferencia para recibir atención inmediata / Da clic a su nombre.</p>
+                        
+                        <!-- CÓMO LLEGAR DIRECTO -->
+                        <a id="boton-como-llegar-principal" 
+                           href="https://maps.app.goo.gl/DhjuGyGnGQF74pzT9" 
+                           target="_blank" 
+                           class="btn-menu maps-btn" 
+                           style="display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 12px; font-weight: bold; background-color: #f80101; color: white; border-radius: 8px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 1px solid var(--brand-accent);"
+                           onclick="playClick()">
+                           <i class="fas fa-location-arrow"></i> CÓMO LLEGAR 
+                        </a>
+                    </div>
+
+                    <!-- Contenedor inyectado por JS -->
+                    <div id="contenedor-sucursales"></div>
+                    
+                    <!-- BOTÓN DE CIERRE FIJO -->
+                    <button onclick="cerrarMenu()" class="btn-cerrar">Cerrar</button>
+                </div>
+            </div>
+
+            <!-- NUEVO MENÚ OCULTO PARA RESEÑAS / FEEDBACK CONFIDENCIAL -->
+            <div id="miMenuReseñas" class="menu-oculto" onclick="cerrarMenuReseñas()">
+                <div class="menu-contenido" onclick="event.stopPropagation()">
+                    <div class="bloque-mapa-guia" style="text-align: center; padding: 5px 0 15px 0; width: 100%;">
+                        <h3 style="font-size: 0.95rem; font-weight: bold; color: #fff; text-transform: uppercase; margin-bottom: 4px; font-family: 'Montserrat', sans-serif;">Evaluación de Servicio (Confidencial)</h3>
+                        <p style="font-size: 0.7rem; color: rgba(255,255,255,0.7); margin-bottom: 12px; font-family: 'Montserrat', sans-serif; padding: 0 10px;">Elige a tu asesor para enviar tu calificación directamente a la Gerencia de Ventas.</p>
+                    </div>
+
+                    <!-- Contenedor inyectado por JS para las reseñas -->
+                    <div id="contenedor-reseñas-asesores" style="width: 100%; display: flex; flex-direction: column; gap: 8px;"></div>
+                    
+                    <!-- BOTÓN DE CIERRE FIJO -->
+                    <button onclick="cerrarMenuReseñas()" class="btn-cerrar" style="margin-top: 15px;">Cerrar</button>
+                </div>
             </div>
 
             <!-- MENÚ DE CONTACTO - SE GENERA DINÁMICAMENTE POR SCRIPT -->
@@ -129,7 +178,7 @@
     <div id="modal-negocios" class="overlay-modal brand-custom-modal" style="display: none;" onclick="closeBrandModal('modal-negocios')">
         <button class="btn-close-circular" onclick="closeBrandModal('modal-negocios')">×</button>
         <div class="network-scroll-box" onclick="event.stopPropagation()">
-            <h3 class="network-modal-title"><i class="fas fa-motorcycle"></i> SIENTE LA LIBERTAD</h3>
+            <h3 class="network-modal-title"><i class="fas fa-car"></i> VIVE LA EVOLUCIÓN</h3>
             <p class="network-modal-subtitle">Descubre lo que nos hace diferentes</p>
             <div class="network-buttons-grid">
                 <button class="btn-network-link" onclick="openNetworkCard('https://www.youtube.com/shorts/fYEbifqCfL4')"><i class="fas fa-car-side"></i> EL LUJO QUE MERECES</button>
@@ -145,7 +194,7 @@
         <section class="tab-pane" id="cat1-pane" style="display: none;"><div id="grid-cat1" class="carousel-zigzag-grid"></div></section>
         <section class="tab-pane" id="cat2-pane" style="display: none;"><div id="grid-cat2" class="carousel-zigzag-grid"></div></section>
         
-        <!-- APARTADO DE PREGUNTAS FRECUENTES (ADAPTADO A CONCESIONARIA DE MOTOCICLETAS) -->
+        <!-- APARTADO DE PREGUNTAS FRECUENTES (ADAPTADO A CONCESIONARIA DE AUTOS) -->
         <section class="tab-pane" id="cat3-pane" style="display: none; padding: 20px; color: #fff; font-family: 'Montserrat', sans-serif;">
             <h2 class="pane-title" style="text-align: center; margin-bottom: 25px; font-weight: bold; letter-spacing: 1.5px;">PREGUNTAS FRECUENTES</h2>
             <div style="display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto;">
@@ -282,10 +331,10 @@
                 </div>
             </div>
 
-            <!-- PASO 2: Motocicleta de interés -->
+            <!-- PASO 2: Vehículo de interés -->
 <div class="cuestionario-paso" id="paso-2" style="display:none;">
-    <h4>PASO 2. ¿Qué tipo de motocicleta te interesa?</h4>
-    <p class="paso-desc">Informa al asesor qué estilos generan más interés en el mercado.</p>
+    <h4>PASO 2. ¿Qué vehículo te interesa?</h4>
+    <p class="paso-desc">Informa al asesor qué modelos generan más interés en el mercado.</p>
     <div class="opciones-grid">
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Scooter / Urban Scooter')">Scooter / Urbana</button>
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(2, 'modelo', 'Trabajo / Reparto')">Trabajo</button>
@@ -301,7 +350,7 @@
     </div>
 </div>
 
-            <!-- PASO 3: Estilo de motocicleta -->
+            <!-- PASO 3: Tipo de vehículo -->
 <div class="cuestionario-paso" id="paso-3" style="display:none;">
     <h4>PASO 3. ¿Qué cilindrada o categoría buscas?</h4>
     <p class="paso-desc">Perfilado inicial de la potencia y gama de la motocicleta.</p>
@@ -323,7 +372,7 @@
 
             <!-- PASO 4: Uso principal -->
 <div class="cuestionario-paso" id="paso-4" style="display:none;">
-    <h4>PASO 4. ¿Para qué la utilizarás principalmente?</h4>
+    <h4>PASO 4. ¿Para qué lo utilizarás principalmente?</h4>
     <p class="paso-desc">Segmentación de la utilidad técnica comercial.</p>
     <div class="opciones-grid">
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(4, 'uso', 'Uso diario / Traslado')">Uso diario / Traslado</button>
@@ -380,7 +429,7 @@
     <h4>PASO 7. ¿Qué presupuesto aproximado tienes?</h4>
     <p class="paso-desc">Clasificación del poder adquisitivo para motocicletas.</p>
     <div class="opciones-vertical">
-        <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', 'Menos de $50,000')">Menos de $50,000</button>
+        button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', 'Menos de $50,000')">Menos de $50,000</button>
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', '$50,000 a $120,000')">$50,000 a $120,000</button>
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', '$120,000 a $250,000')">$120,000 a $250,000</button>
         <button type="button" class="btn-opcion-q" onclick="guardarDatoPaso(7, 'presupuesto', 'Más de $250,000')">Más de $250,000</button>
@@ -435,10 +484,14 @@
 </div>
 
 <div class="cuestionario-paso" id="paso-10" style="display:none;">
-    <h4>PASO 10. Selecciona a tu asesor</h4>
+    <h4>PASO 10. Asesor Sugerido</h4>
     <div style="margin-top: 20px; padding: 15px; border-top: 2px solid #f80101;">
-        <p>Para brindarte una atención personalizada, elige a tu asesor de confianza:</p>
-        <select id="asesor-selector" style="width: 100%; padding: 10px; margin-top: 10px;">
+        <p>Con la información que nos diste, te sugerimos al asesor da clic en su pestaña:</p>
+        <!-- Esta parte mostrará el nombre del asesor que el sistema elija -->
+        <h3 id="texto-asesor-sugerido" style="color: #f80101; text-align: center; margin: 10px 0;">ASESOR 1</h3>
+        
+        <p style="font-size: 14px; margin-top: 15px;">Pero si prefieres, puedes cambiarlo aquí:</p>
+        <select id="asesor-selector" style="width: 100%; padding: 10px; margin-top: 10px; background: #333; color: white; border: 1px solid #555;">
             <option value="ASESOR 1">ASESOR 1</option>
             <option value="ASESOR 2">ASESOR 2</option>
             <option value="ASESOR 3">ASESOR 3</option>
@@ -448,9 +501,9 @@
         </select>
     </div>
     <div style="margin-top: 20px;">
-        <button style="width: 100%; padding: 15px; background-color: #f80101; color: white; border: none; cursor: pointer;" onclick="finalizarCuestionarioYMostrarAsesores()">FINALIZAR Y ENVIAR</button>
+        <button style="width: 100%; padding: 15px; background-color: #f80101; color: white; border: none; cursor: pointer; font-weight: bold;" onclick="finalizarCuestionarioYMostrarAsesores()">FINALIZAR Y ENVIAR</button>
     </div>
     <div class="cuestionario-footer" style="margin-top: 20px;">
-        <button id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)">Anterior</button>
+        <button id="btn-q-prev" class="btn-q-nav" onclick="cambiarPasoCuestionario(-1)" style="background: none; border: 1px solid #555; color: white; padding: 10px; cursor: pointer;">Anterior</button>
     </div>
 </div>
